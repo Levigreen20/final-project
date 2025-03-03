@@ -1,1 +1,51 @@
+# Program to track Elly's 2024 season statistics
+#(2024 MLB season, approximate real data)
+elly_stats = {
+    "name": "Elly De La Cruz",
+    "season": 2024,
+    "games_played": 160,
+    "at_bats": 618,
+    "hits": 160,
+    "home_runs": 25,
+    "runs_batted_in": 76,
+    "stolen_bases": 67,
+    "walks": 68
+}
 
+# This is the function to calculate batting average
+def calculate_batting_average(hits, at_bats):
+    if at_bats == 0:  # Avoid division by zero
+        return 0.0
+    return round(hits / at_bats, 3)  # Round to 3 decimals (e.g., .259)
+
+# Display stats
+def display_stats(stats):
+    batting_avg = calculate_batting_average(stats["hits"], stats["at_bats"])
+    
+    # Build a formatted output string
+    output = f"--- {stats['name']} {stats['season']} Season Stats ---\n"
+    output += f"Games Played: {stats['games_played']}\n"
+    output += f"At Bats: {stats['at_bats']}\n"
+    output += f"Hits: {stats['hits']}\n"
+    output += f"Batting Average: {batting_avg}\n"
+    output += f"Home Runs: {stats['home_runs']}\n"
+    output += f"Runs Batted In: {stats['runs_batted_in']}\n"
+    output += f"Stolen Bases: {stats['stolen_bases']}\n"
+    output += f"Walks: {stats['walks']}\n"
+    
+    # Print to console
+    print(output)
+    
+    # Save to a file
+    with open("elly_stats.txt", "w") as file:
+        file.write(output)
+    print("Stats saved to 'elly_stats.txt'!")
+
+# Main function to run the program
+def main():
+    print("Welcome to Elly's Stats Tracker!")
+    display_stats(elly_stats)
+
+# Run the program
+if __name__ == "__main__":
+    main()
