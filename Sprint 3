@@ -1,0 +1,84 @@
+# Program to track Elly's 2024 season statistics
+# (2024 MLB season, real data as of end of regular season)
+elly_stats = {
+    "name": "Elly De La Cruz",
+    "season": 2024,
+    "games_played": 160,
+    "at_bats": 618,
+    "hits": 160,
+    "home_runs": 25,
+    "runs_batted_in": 76,
+    "stolen_bases": 67,
+    "walks": 68,
+    "doubles": 36,
+    "triples": 10,
+    "strikeouts": 189,  # Example stat
+}
+
+# Function to calculate batting average
+def calculate_batting_average(hits, at_bats):
+    return round(hits / at_bats, 3) if at_bats else 0.0
+
+# Function to calculate OBP
+def calculate_obp(hits, walks, at_bats):
+    return round((hits + walks) / (at_bats + walks), 3) if (at_bats + walks) else 0.0
+
+# Function to calculate total bases
+def calculate_total_bases(hits, doubles, triples, home_runs):
+    singles = hits - doubles - triples - home_runs
+    return (singles * 1) + (doubles * 2) + (triples * 3) + (home_runs * 4)
+
+# Function to calculate slugging percentage
+def calculate_slg(total_bases, at_bats):
+    return round(total_bases / at_bats, 3) if at_bats else 0.0
+
+# Function to calculate OPS (OBP + SLG)
+def calculate_ops(obp, slg):
+    return round(obp + slg, 3)
+
+# Function to calculate BABIP
+def calculate_babip(hits, home_runs, at_bats, strikeouts):
+    balls_in_play = at_bats - strikeouts - home_runs
+    return round((hits - home_runs) / balls_in_play, 3) if balls_in_play else 0.0
+
+# Display stats
+def display_stats(stats):
+    batting_avg = calculate_batting_average(stats["hits"], stats["at_bats"])
+    obp = calculate_obp(stats["hits"], stats["walks"], stats["at_bats"])
+    total_bases = calculate_total_bases(stats["hits"], stats["doubles"], stats["triples"], stats["home_runs"])
+    slg = calculate_slg(total_bases, stats["at_bats"])
+    ops = calculate_ops(obp, slg)
+    babip = calculate_babip(stats["hits"], stats["home_runs"], stats["at_bats"], stats["strikeouts"])
+
+    output = f"--- {stats['name']} {stats['season']} Season Stats ---\n"
+    output += f"Games Played: {stats['games_played']}\n"
+    output += f"At Bats: {stats['at_bats']}\n"
+    output += f"Hits: {stats['hits']}\n"
+    output += f"Batting Average: {batting_avg}\n"
+    output += f"Home Runs: {stats['home_runs']}\n"
+    output += f"Runs Batted In: {stats['runs_batted_in']}\n"
+    output += f"Stolen Bases: {stats['stolen_bases']}\n"
+    output += f"Walks: {stats['walks']}\n"
+    output += f"Strikeouts: {stats['strikeouts']}\n"
+    output += f"Doubles: {stats['doubles']}\n"
+    output += f"Triples: {stats['triples']}\n"
+    output += f"On-Base Percentage (OBP): {obp}\n"
+    output += f"Slugging Percentage (SLG): {slg}\n"
+    output += f"OPS (OBP + SLG): {ops}\n"
+    output += f"Total Bases: {total_bases}\n"
+    output += f"BABIP: {babip}\n"
+
+    print(output)
+
+    # Save to a file
+    with open("elly_stats.txt", "w") as file:
+        file.write(output)
+    print("Stats saved to 'elly_stats.txt'!")
+
+# Main function
+def main():
+    print("Welcome to Elly's Stats Tracker!")
+    display_stats(elly_stats)
+
+if __name__ == "__main__":
+    main()
