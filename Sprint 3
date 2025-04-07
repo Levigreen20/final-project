@@ -12,7 +12,7 @@ elly_stats = {
     "walks": 68,
     "doubles": 36,
     "triples": 10,
-    "strikeouts": 189,  # Example stat
+    "strikeouts": 189,
 }
 
 # Function to calculate batting average
