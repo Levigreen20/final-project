@@ -1,0 +1,69 @@
+# Elly De La Cruz 2025 Advanced Stats Tracker
+
+elly_2025_stats = {
+    "name": "Elly De La Cruz",
+    "season": 2025,
+    "games_played": 20,
+    "at_bats": 83,
+    "hits": 20,
+    "home_runs": 4,
+    "runs_batted_in": 21,
+    "stolen_bases": 6,
+    "walks": 8,
+    "strikeouts": 28,
+    "doubles": 3,
+    "triples": 0,
+    "obp": 0.308,
+    "slg": 0.410,
+    "ops": 0.718,
+    "iso": 0.169,
+    "babip": 0.314,
+    "woba": 0.318,
+    "xwoba": 0.370,
+    "barrel_percentage": 18.0,
+    "hard_hit_percentage": 56.0,
+    "avg_exit_velocity": 94.4
+}
+
+def calculate_batting_average(hits, at_bats):
+    return round(hits / at_bats, 3) if at_bats else 0.0
+
+def display_stats(stats):
+    batting_avg = calculate_batting_average(stats["hits"], stats["at_bats"])
+
+    output = f"Welcome to Elly's 2025 Stats Tracker!\n"
+    output += f"--- {stats['name']} {stats['season']} Season Stats ---\n"
+    output += f"Games Played: {stats['games_played']}\n"
+    output += f"At Bats: {stats['at_bats']}\n"
+    output += f"Hits: {stats['hits']}\n"
+    output += f"Batting Average (AVG): {batting_avg}\n"
+    output += f"Home Runs: {stats['home_runs']}\n"
+    output += f"Runs Batted In (RBI): {stats['runs_batted_in']}\n"
+    output += f"Stolen Bases: {stats['stolen_bases']}\n"
+    output += f"Walks: {stats['walks']}\n"
+    output += f"Strikeouts: {stats['strikeouts']}\n"
+    output += f"Doubles: {stats['doubles']}\n"
+    output += f"Triples: {stats['triples']}\n"
+    output += f"On-Base Percentage (OBP): {stats['obp']}\n"
+    output += f"Slugging Percentage (SLG): {stats['slg']}\n"
+    output += f"OPS (OBP + SLG): {stats['ops']}\n"
+    output += f"ISO (Isolated Power): {stats['iso']}\n"
+    output += f"BABIP: {stats['babip']}\n"
+    output += f"wOBA: {stats['woba']}\n"
+    output += f"xwOBA: {stats['xwoba']}\n"
+    output += f"Barrel %: {stats['barrel_percentage']}%\n"
+    output += f"Hard Hit %: {stats['hard_hit_percentage']}%\n"
+    output += f"Average Exit Velocity: {stats['avg_exit_velocity']} mph\n"
+
+    print(output)
+
+    # Save to file
+    with open("elly_2025_stats.txt", "w") as file:
+        file.write(output)
+    print("Stats saved to 'elly_2025_stats.txt'!")
+
+def main():
+    display_stats(elly_2025_stats)
+
+if __name__ == "__main__":
+    main()
